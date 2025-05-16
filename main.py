@@ -11,25 +11,8 @@ def cad_prod_ali():
     data_validade = input("Insira a data de validade do produto: ")
     return nome, preco, quantidade, data_validade
 
-def repor_estoque(self, quantidade_adicionar):
-    if quantidade_adicionar > 0:
-        self.quantidade += quantidade_adicionar
-        print(f"{quantidade_adicionar} unidades de '{self.nome}' adicionadas ao estoque.")
-        print(f"Novo estoque de '{self.nome}': {self.quantidade}")
-    else:
-        print("A quantidade para reposição deve ser maior que zero.")
-
-def vender_produto(self, quantidade_vender):
-    if quantidade_vender <= 0:
-        print("A quantidade para venda deve ser maior que zero.")
-    if self.quantidade >= quantidade_vender:
-        self.quantidade -= quantidade_vender
-        print(f"{quantidade_vender} unidades de '{self.nome}' vendidas.")
-        print(f"Estoque restante de '{self.nome}': {self.quantidade}")
-    else:
-        print(f"Estoque insuficiente de '{self.nome}'. Disponível: {self.quantidade}")
-
 print("====MENU====")
+
 opcao = int(input("\n 1.Cadastrar produto comum. \n 2.Cadastrar produto alimentício. \n 3.Listar todos os produtos. \n 4.Repor estoque. \n 5.Vender produto. \n 6.Sair : "))
 while opcao != 4: 
     if opcao == 1:
@@ -49,4 +32,14 @@ while opcao != 4:
             produto.exibir_produtos()
         opcao = int(input("\n 1.Cadastrar produto comum. \n 2.Cadastrar produto alimentício. \n 3.Listar todos os produtos. \n 4.Repor estoque. \n 5.Vender produto. \n 6.Sair : "))
     elif opcao == 4:
-        print("Saindo do menu...")
+        produto_repor = input("Qual produto deseja repor: ")
+        if produto_repor in prod_:
+            produto_repor.repor_estoque()
+        opcao = int(input("\n 1.Cadastrar produto comum. \n 2.Cadastrar produto alimentício. \n 3.Listar todos os produtos. \n 4.Repor estoque. \n 5.Vender produto. \n 6.Sair : "))
+    elif opcao == 5:
+        for produto in prod_:
+            produto.vender_produto()
+        opcao = int(input("\n 1.Cadastrar produto comum. \n 2.Cadastrar produto alimentício. \n 3.Listar todos os produtos. \n 4.Repor estoque. \n 5.Vender produto. \n 6.Sair : "))
+    elif opcao == 6:
+        print("Saindo...")
+
